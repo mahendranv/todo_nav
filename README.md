@@ -53,4 +53,6 @@ This will give you the overall idea
 
 Here the animation at 3000 ms duration
 
-![Transition animation]https://i.imgur.com/jLaWOow.mp4[/img]
+<img src="https://github.com/mahendranv/todo_nav/blob/main/art/nav_transition_animation.gif" width="350">
+
+
