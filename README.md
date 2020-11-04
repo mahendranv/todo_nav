@@ -46,10 +46,10 @@ This will give you the overall idea
     app:popExitAnim="@anim/slide_out" />
 ```
 
-`enterAnim` - Next destination fragment enter animation
-`exitAnim`  - How source destination should disappear
-`popExitAnim` - How should the destination fragment vanish
-`popEnterAnim` - How the source fragment should surface back
+- `enterAnim` - Next destination fragment enter animation
+- `exitAnim`  - How source destination should disappear
+- `popExitAnim` - How should the destination fragment vanish
+- `popEnterAnim` - How the source fragment should surface back
 
 Here the animation at 3000 ms duration
 
