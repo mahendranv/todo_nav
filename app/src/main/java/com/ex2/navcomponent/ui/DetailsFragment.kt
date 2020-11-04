@@ -27,5 +27,10 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.descriptionLabel.text = args.todoItem.description
+
+        with(binding) {
+            descriptionLabel.text = args.todoItem.description
+            completedStatus.text = "Completed: ${args.todoItem.completed}"
+        }
     }
 }
