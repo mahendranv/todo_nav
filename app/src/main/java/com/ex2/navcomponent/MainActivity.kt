@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction()
-            .add(R.id.navHost, TodoListFragment(), "sdff ")
-            .commitNow()
+
     }
 }

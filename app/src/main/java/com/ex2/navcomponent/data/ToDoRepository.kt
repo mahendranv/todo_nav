@@ -56,4 +56,21 @@ object ToDoRepository {
         return cal.timeInMillis
     }
 
+    private fun addToDo(todo: Todo) {
+        list.add(0, todo)
+    }
+
+    private fun markAsCompleted(id: Int, newStatus: Boolean) {
+        val index = list.indexOfFirst { it.id == id }
+        if (index != -1) {
+            val item = list.removeAt(index)
+            list.add(
+                item.copy(
+                    completed = newStatus,
+                    updated = System.currentTimeMillis()
+                )
+            )
+        }
+    }
+
 }

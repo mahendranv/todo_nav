@@ -10,12 +10,20 @@ import com.ex2.navcomponent.layoutInflater
 import com.ex2.navcomponent.markDone
 import com.ex2.navcomponent.markNotDone
 
+typealias OnTodoClicked = (Todo) -> Unit
+
 class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
     private var items: List<Todo>? = null
 
+    private var itemClickListener: OnTodoClicked? = null
+
     fun setItems(items: List<Todo>) {
         this.items = items
+    }
+
+    fun setItemClickListener(listener: OnTodoClicked?) {
+        this.itemClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +46,14 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(itemView) {
 
         private var todo: Todo? = null
+
+        init {
+            itemView.setOnClickListener {
+                todo?.let {
+                    itemClickListener?.invoke(it)
+                }
+            }
+        }
 
         fun bind(todo: Todo) {
             this.todo = todo

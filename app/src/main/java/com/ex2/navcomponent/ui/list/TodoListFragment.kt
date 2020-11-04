@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ex2.navcomponent.R
 import com.ex2.navcomponent.data.ToDoRepository
 import com.ex2.navcomponent.databinding.FragmentToDoListBinding
 
@@ -27,6 +29,9 @@ class TodoListFragment : Fragment() {
 
         binding.todoRecyclerView.adapter = TodoListAdapter().apply {
             setItems(ToDoRepository.list)
+            setItemClickListener {
+                findNavController().navigate(R.id.action_todoListFragment_to_detailsFragment)
+            }
         }
         binding.todoRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
