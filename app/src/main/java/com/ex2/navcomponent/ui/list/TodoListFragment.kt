@@ -30,7 +30,9 @@ class TodoListFragment : Fragment() {
         binding.todoRecyclerView.adapter = TodoListAdapter().apply {
             setItems(ToDoRepository.list)
             setItemClickListener {
-                findNavController().navigate(R.id.action_todoListFragment_to_detailsFragment)
+                val navigation =
+                    TodoListFragmentDirections.actionTodoListFragmentToDetailsFragment(it)
+                findNavController().navigate(navigation)
             }
         }
         binding.todoRecyclerView.layoutManager =

@@ -18,5 +18,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.ex2.navcomponent.ui.DetailsFragment"
         android:label="Details Screen"
-        tools:layout="@layout/fragment_todo_details" />
+        tools:layout="@layout/fragment_todo_details">
+
+        <argument
+            android:name="todoItem"
+            app:argType="com.ex2.navcomponent.data.Todo" />
+
+    </fragment>
 </navigation>
