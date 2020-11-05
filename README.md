@@ -81,10 +81,12 @@ To see the actual transition, we need to postpone it and execute after a layout 
 This couple of lines would do it.
 
 ```kotlin
-fun onViewCreated...
-...
-postponeEnterTransition()
-view.doOnPreDraw { startPostponedEnterTransition() }
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
+        ...
 ```
 
 In details screen, we need to define the shared element transitions for both enter and return. This should be done before the onCreateView itself.
@@ -109,4 +111,9 @@ binding.descriptionLabel.transitionName = args.todoItem.titleTransitionName()
 ```
 
 Here's the result
+
 <img src="https://github.com/mahendranv/todo_nav/blob/main/art/nav_shared_element.gif" width="350">
+
+
+Whole shared element transition implementation is here with this commit.
+https://github.com/mahendranv/todo_nav/commit/d6181cf116feabe29acb7438e15751e6b540191a
