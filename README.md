@@ -109,5 +109,4 @@ binding.descriptionLabel.transitionName = args.todoItem.titleTransitionName()
 ```
 
 Here's the result
-
 <img src="https://github.com/mahendranv/todo_nav/blob/main/art/nav_shared_element.gif" width="350">
