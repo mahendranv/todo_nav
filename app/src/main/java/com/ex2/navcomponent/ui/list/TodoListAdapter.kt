@@ -2,6 +2,7 @@ package com.ex2.navcomponent.ui.list
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ex2.navcomponent.data.Todo
 import com.ex2.navcomponent.databinding.LiTodoItemBinding
@@ -9,8 +10,9 @@ import com.ex2.navcomponent.databinding.LiTodoItemBinding
 import com.ex2.navcomponent.layoutInflater
 import com.ex2.navcomponent.markDone
 import com.ex2.navcomponent.markNotDone
+import com.ex2.navcomponent.titleTransitionName
 
-typealias OnTodoClicked = (Todo) -> Unit
+typealias OnTodoClicked = (Todo, TextView) -> Unit
 
 class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
@@ -50,7 +52,7 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
         init {
             itemView.setOnClickListener {
                 todo?.let {
-                    itemClickListener?.invoke(it)
+                    itemClickListener?.invoke(it, binding.descriptionLabel)
                 }
             }
         }
@@ -64,6 +66,7 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
                 binding.descriptionLabel.markNotDone()
             }
             binding.descriptionLabel.text = todo.description
+            binding.descriptionLabel.transitionName = todo.titleTransitionName()
         }
     }
 }

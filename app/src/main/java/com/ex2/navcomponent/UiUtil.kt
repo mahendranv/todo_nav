@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.viewbinding.ViewBinding
+import com.ex2.navcomponent.data.Todo
 
 fun TextView.markDone() {
     paintFlags = paintFlags or (Paint.STRIKE_THRU_TEXT_FLAG)
@@ -16,3 +17,6 @@ fun TextView.markNotDone() {
 }
 
 fun View.layoutInflater() = LayoutInflater.from(context)
+
+
+fun Todo.titleTransitionName() = "todo_${id}_title"

@@ -12,11 +12,7 @@
         tools:layout="@layout/fragment_to_do_list">
         <action
             android:id="@+id/action_todoListFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
