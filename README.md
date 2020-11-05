@@ -25,7 +25,7 @@ Multiple entry points!!
 
 Ui
 - [x] Transition Animation
-- [ ] Shared element transition
+- [x] Shared element transition
 
 
 ### Fragment transition
@@ -55,4 +55,58 @@ Here the animation at 3000 ms duration
 
 <img src="https://github.com/mahendranv/todo_nav/blob/main/art/nav_transition_animation.gif" width="350">
 
+## Shared element transition
 
+For shared element transition, the API needs unique transition names to be mentioned for HeroView on both screens and navigate method.
+Since we're using recycler view, it is not possible to use a static name for list item. And another point to note, the views will be recycled so it should be data oriented.
+
+So I created a simple extension method that compose the transition name out of todo object and assigned the transition name on onBind.
+
+```kotlin
+fun Todo.titleTransitionName() = "todo_${id}_title"
+```
+
+While invoking the details screen, the transition name and hero element passed on to navController.
+
+```kotlin
+val extras = FragmentNavigatorExtras(
+        textView to todo.titleTransitionName()
+)
+val navigation =
+    TodoListFragmentDirections.actionTodoListFragmentToDetailsFragment(todo)
+findNavController().navigate(navigation, extras)
+```
+
+To see the actual transition, we need to postpone it and execute after a layout pass. This is needed on both the fragments.
+This couple of lines would do it.
+
+```kotlin
+fun onViewCreated...
+...
+postponeEnterTransition()
+view.doOnPreDraw { startPostponedEnterTransition() }
+```
+
+In details screen, we need to define the shared element transitions for both enter and return. This should be done before the onCreateView itself.
+
+```kotlin
+ override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val transition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
+                duration = DURATION_TRANSITION
+            }
+        sharedElementEnterTransition = transition
+        sharedElementReturnTransition = transition
+    }
+```
+
+Now on onCreateView, assign the transition name to hero view. And that's it.
+
+```kotlin
+binding.descriptionLabel.transitionName = args.todoItem.titleTransitionName()
+```
+
+Here's the result
+<img src="https://github.com/mahendranv/todo_nav/blob/main/art/nav_shared_element.gif" width="350">
