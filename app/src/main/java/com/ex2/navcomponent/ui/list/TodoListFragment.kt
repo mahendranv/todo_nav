@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ex2.navcomponent.R
 import com.ex2.navcomponent.data.ToDoRepository
 import com.ex2.navcomponent.databinding.FragmentToDoListBinding
 import com.ex2.navcomponent.titleTransitionName
@@ -45,5 +46,10 @@ class TodoListFragment : Fragment() {
         }
         binding.todoRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+
+        binding.addNewCta.setOnClickListener {
+            findNavController().navigate(R.id.action_todoListFragment_to_nav_create_todo)
+        }
     }
 }

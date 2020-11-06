@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_todoListFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_todoListFragment_to_nav_create_todo"
+            app:destination="@id/nav_create_todo" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -25,4 +28,5 @@
             app:argType="com.ex2.navcomponent.data.Todo" />
 
     </fragment>
+    <include app:graph="@navigation/nav_create_todo" />
 </navigation>

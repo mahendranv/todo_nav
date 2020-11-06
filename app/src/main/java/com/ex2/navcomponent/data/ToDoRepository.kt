@@ -49,20 +49,31 @@ object ToDoRepository {
         return cal.timeInMillis
     }
 
-    private fun addToDo(todo: Todo) {
-        list.add(0, todo)
+    fun addToDo(todo: String) {
+        list.add(
+            0,
+            Todo(
+                id = counter++,
+                updated = System.currentTimeMillis(),
+                completed = false,
+                description = todo
+            )
+        )
     }
 
-    fun markAsCompleted(id: Int, newStatus: Boolean) {
+    fun markAsCompleted(id: Int, completed: Boolean) {
         val index = list.indexOfFirst { it.id == id }
         if (index != -1) {
             val item = list.removeAt(index)
-            list.add(
-                item.copy(
-                    completed = newStatus,
-                    updated = System.currentTimeMillis()
-                )
+            val updatedTodo = item.copy(
+                completed = completed,
+                updated = System.currentTimeMillis()
             )
+            if (completed) {
+                list.add(updatedTodo)
+            } else {
+                list.add(0, updatedTodo)
+            }
         }
     }
 
