@@ -43,6 +43,13 @@ class TodoListFragment : Fragment() {
                     TodoListFragmentDirections.actionTodoListFragmentToDetailsFragment(todo)
                 findNavController().navigate(navigation, extras)
             }
+            setIconClickListener { todo, position ->
+                val newStatus = !todo.completed
+                val newPosition = if (newStatus) ToDoRepository.list.lastIndex else 0
+                ToDoRepository.markAsCompleted(todo.id, newStatus)
+                notifyItemMoved(position, newPosition)
+                notifyItemChanged(newPosition)
+            }
         }
         binding.todoRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

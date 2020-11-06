@@ -14,11 +14,15 @@ import com.ex2.navcomponent.titleTransitionName
 
 typealias OnTodoClicked = (Todo, TextView) -> Unit
 
+typealias TodoStatusClicked = (Todo, Int) -> Unit
+
 class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
     private var items: List<Todo>? = null
 
     private var itemClickListener: OnTodoClicked? = null
+
+    private var itemIconClickListener: TodoStatusClicked? = null
 
     fun setItems(items: List<Todo>) {
         this.items = items
@@ -26,6 +30,10 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
     fun setItemClickListener(listener: OnTodoClicked?) {
         this.itemClickListener = listener
+    }
+
+    fun setIconClickListener(listener: TodoStatusClicked?) {
+        this.itemIconClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -53,6 +61,12 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
             itemView.setOnClickListener {
                 todo?.let {
                     itemClickListener?.invoke(it, binding.descriptionLabel)
+                }
+            }
+
+            binding.todoIcon.setOnClickListener {
+                todo?.let {
+                    itemIconClickListener?.invoke(it, adapterPosition)
                 }
             }
         }
