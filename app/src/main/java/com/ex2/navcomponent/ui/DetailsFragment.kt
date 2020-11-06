@@ -5,12 +5,15 @@ import android.view.*
 import android.view.animation.AnimationUtils
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import com.ex2.navcomponent.R
+import com.ex2.navcomponent.data.ToDoRepository
 import com.ex2.navcomponent.databinding.FragmentTodoDetailsBinding
 import com.ex2.navcomponent.titleTransitionName
+import com.google.android.material.snackbar.Snackbar
 
 class DetailsFragment : Fragment() {
 
@@ -38,6 +41,22 @@ class DetailsFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_todo_details, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val todo = args.todoItem
+        when (item.itemId) {
+            R.id.actionComplete -> {
+                ToDoRepository.markAsCompleted(todo.id, true)
+                findNavController().popBackStack()
+            }
+            R.id.actionDelete -> {
+                ToDoRepository.deleteTodo(todo.id)
+                Snackbar.make(binding.root, "Todo item Deleted", Snackbar.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun settleOtherElements() {

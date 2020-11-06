@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.ex2.navcomponent.ui.DetailsFragment"
-        android:label="Details Screen"
+        android:label="Details"
         tools:layout="@layout/fragment_todo_details">
 
         <argument

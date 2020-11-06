@@ -53,7 +53,7 @@ object ToDoRepository {
         list.add(0, todo)
     }
 
-    private fun markAsCompleted(id: Int, newStatus: Boolean) {
+    fun markAsCompleted(id: Int, newStatus: Boolean) {
         val index = list.indexOfFirst { it.id == id }
         if (index != -1) {
             val item = list.removeAt(index)
@@ -64,6 +64,10 @@ object ToDoRepository {
                 )
             )
         }
+    }
+
+    fun deleteTodo(id: Int) {
+        list.removeIf { it.id == id }
     }
 
 }
