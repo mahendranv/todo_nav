@@ -3,6 +3,7 @@
 
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="todo_icon_size">60dp</dimen>
+    <dimen name="todo_icon_small_size">45dp</dimen>
 
     <integer name="page_transition_time">300</integer>
 </resources>

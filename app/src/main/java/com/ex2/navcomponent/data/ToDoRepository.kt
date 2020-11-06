@@ -67,16 +67,16 @@ object ToDoRepository {
         return cal.timeInMillis
     }
 
-    fun addToDo(todo: String) {
-        list.add(
-            0,
-            Todo(
-                id = counter++,
-                updated = System.currentTimeMillis(),
-                completed = false,
-                description = todo
-            )
+    fun addToDo(todo: String, color: Int = COLORS[0]): Todo {
+        val todo = Todo(
+            id = counter++,
+            updated = System.currentTimeMillis(),
+            completed = false,
+            description = todo,
+            colorCode = color
         )
+        list.add(0, todo)
+        return todo
     }
 
     fun markAsCompleted(id: Int, completed: Boolean) {

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ex2.navcomponent.ui.widgets.TodoCircleView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/icon"
+    android:layout_width="@dimen/todo_icon_size"
+    android:layout_height="@dimen/todo_icon_size" />

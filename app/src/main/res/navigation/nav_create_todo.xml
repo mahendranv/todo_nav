@@ -7,8 +7,24 @@
 
     <fragment
         android:id="@+id/createTodoFragment"
-        android:name="com.ex2.navcomponent.ui.CreateTodoFragment"
-        android:label="Create"
-        tools:layout="@layout/fragment_create_todo" />
+        android:name="com.ex2.navcomponent.ui.create.CreateTodoFragment"
+        android:label="Create Todo"
+        tools:layout="@layout/fragment_create_todo">
+        <action
+            android:id="@+id/action_createTodoFragment_to_colorPickerFragment"
+            app:destination="@id/colorPickerFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/colorPickerFragment"
+        android:name="com.ex2.navcomponent.ui.create.ColorPickerFragment"
+        android:label="Pick Color"
+        tools:layout="@layout/fragment_color_picker">
+
+        <argument
+            android:name="description"
+            app:argType="string"
+            app:nullable="false" />
+        
+    </fragment>
 </navigation>
