@@ -12,6 +12,8 @@ data class Todo(
 
     val updated: Long,
 
-    val completed: Boolean = false
+    val completed: Boolean = false,
+
+    val colorCode: Int = 0xff415dba.toInt()
 
 ) : Parcelable

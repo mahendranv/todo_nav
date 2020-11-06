@@ -10,6 +10,20 @@ object ToDoRepository {
 
     private var counter = 1
 
+    val COLORS = arrayOf(
+        0xfff44336.toInt(),
+        0xffe91e63.toInt(),
+        0xff9c27b0.toInt(),
+        0xff673ab7.toInt(),
+        0xff3f51b5.toInt(),
+        0xff2196f3.toInt(),
+        0xff009688.toInt(),
+        0xff0091ea.toInt(),
+        0xff1b5e20.toInt(),
+        0xffff5722.toInt(),
+        0xff263238.toInt()
+    )
+
     val list = mutableListOf(
         Todo(
             id = counter++,
@@ -21,25 +35,29 @@ object ToDoRepository {
         Todo(
             id = counter++,
             description = "Create sample project",
-            updated = randomTime()
+            updated = randomTime(),
+            colorCode = COLORS[2]
         ),
 
         Todo(
             id = counter++,
             description = "Add dependencies",
-            updated = randomTime()
+            updated = randomTime(),
+            colorCode = COLORS[4]
         ),
 
         Todo(
             id = counter++,
             description = "Create fragments",
-            updated = randomTime()
+            updated = randomTime(),
+            colorCode = COLORS[6]
         ),
 
         Todo(
             id = counter++,
             description = "Create nav graph",
-            updated = randomTime()
+            updated = randomTime(),
+            colorCode = COLORS[0]
         )
     )
 

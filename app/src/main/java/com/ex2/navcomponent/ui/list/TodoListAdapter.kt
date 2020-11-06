@@ -67,6 +67,10 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
             }
             binding.descriptionLabel.text = todo.description
             binding.descriptionLabel.transitionName = todo.titleTransitionName()
+            binding.todoIcon.apply {
+                isSelected = todo.completed
+                fillColor = todo.colorCode
+            }
         }
     }
 }

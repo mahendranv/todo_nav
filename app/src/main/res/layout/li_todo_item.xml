@@ -7,14 +7,24 @@
     android:background="?selectableItemBackground"
     android:padding="@dimen/margin_normal">
 
+    <com.ex2.navcomponent.ui.widgets.TodoCircleView
+        android:id="@+id/todoIcon"
+        android:layout_width="@dimen/todo_icon_size"
+        android:layout_height="@dimen/todo_icon_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/descriptionLabel"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_normal"
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/todoIcon"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="@tools:sample/lorem/random" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
