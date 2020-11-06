@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ex2.navcomponent.data.ToDoRepository
 import com.ex2.navcomponent.databinding.FragmentCreateTodoBinding
+import com.ex2.navcomponent.hideKeyboard
+import com.ex2.navcomponent.showKeyboard
 
 class CreateTodoFragment : Fragment() {
 
@@ -25,10 +27,15 @@ class CreateTodoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.descriptionEntry.postDelayed({
+            binding.descriptionEntry.showKeyboard()
+        }, 200)
+        
         binding.saveCta.setOnClickListener {
             val description = binding.descriptionEntry.text.toString()
             ToDoRepository.addToDo(description)
             findNavController().popBackStack()
+            binding.descriptionEntry.hideKeyboard()
         }
     }
 }

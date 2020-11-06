@@ -60,7 +60,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun settleOtherElements() {
-        binding.completedStatus.apply {
+        binding.statusToggle.apply {
             visibility = View.VISIBLE
             startAnimation(
                 AnimationUtils.loadAnimation(context, R.anim.settle_in)
@@ -84,11 +84,27 @@ class DetailsFragment : Fragment() {
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
 
-        binding.descriptionLabel.text = args.todoItem.description
+        val todoItem = args.todoItem
+        binding.descriptionLabel.text = todoItem.description
 
         with(binding) {
-            descriptionLabel.text = args.todoItem.description
-            completedStatus.text = "Completed: ${args.todoItem.completed}"
+
+            descriptionLabel.text = todoItem.description
+
+            statusToggle.check(
+                if (todoItem.completed)
+                    R.id.itemCompleted
+                else
+                    R.id.itemPending
+            )
+
+            statusToggle.addOnButtonCheckedListener { _, checkedId, isChecked ->
+                if (checkedId == R.id.itemCompleted) {
+                    ToDoRepository.markAsCompleted(todoItem.id, true)
+                } else if (checkedId == R.id.itemPending) {
+                    ToDoRepository.markAsCompleted(todoItem.id, false)
+                }
+            }
         }
     }
 
