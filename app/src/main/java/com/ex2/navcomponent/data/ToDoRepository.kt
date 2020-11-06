@@ -36,13 +36,6 @@ object ToDoRepository {
             updated = randomTime()
         ),
 
-
-        Todo(
-            id = counter++,
-            description = "Create fragments",
-            updated = randomTime()
-        ),
-
         Todo(
             id = counter++,
             description = "Create nav graph",

@@ -1,9 +1,7 @@
 package com.ex2.navcomponent.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.AnimationUtils
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
@@ -23,6 +21,8 @@ class DetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setHasOptionsMenu(true)
+
         val transition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
                 duration = DURATION_TRANSITION
@@ -33,6 +33,11 @@ class DetailsFragment : Fragment() {
             })
         sharedElementEnterTransition = transition
         sharedElementReturnTransition = transition
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_todo_details, menu)
     }
 
     private fun settleOtherElements() {

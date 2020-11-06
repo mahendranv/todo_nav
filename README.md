@@ -19,6 +19,11 @@ That's it. Rest is purely about exploring the nav-component.
 - [ ] What is equivalent to Activity's `noHistory`?
 - [ ] Toolbar & menu update
 
+Navigation views
+- [x] Title & menu items
+- [ ] Nav drawer
+- [ ] Bottom bar
+
 Multiple entry points!!
 - [ ] Deeplink
 - [ ] Notification
@@ -112,7 +117,7 @@ binding.descriptionLabel.transitionName = args.todoItem.titleTransitionName()
 
 Here's the result
 
-<img src="https://github.com/mahendranv/todo_nav/blob/main/art/nav_shared_element.gif" width="350">
+<img src="https://github.com/mahendranv/todo_nav/blob/main/art/demo2.gif" width="350">
 
 
 Whole shared element transition implementation is here with this commit.
