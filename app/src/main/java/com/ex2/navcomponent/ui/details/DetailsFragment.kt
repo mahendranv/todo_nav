@@ -1,4 +1,4 @@
-package com.ex2.navcomponent.ui
+package com.ex2.navcomponent.ui.details
 
 import android.os.Bundle
 import android.view.*
@@ -13,6 +13,7 @@ import com.ex2.navcomponent.R
 import com.ex2.navcomponent.data.ToDoRepository
 import com.ex2.navcomponent.databinding.FragmentTodoDetailsBinding
 import com.ex2.navcomponent.titleTransitionName
+import com.ex2.navcomponent.ui.SimpleTransitionListener
 import com.google.android.material.snackbar.Snackbar
 
 class DetailsFragment : Fragment() {
@@ -32,6 +33,7 @@ class DetailsFragment : Fragment() {
             }.addListener(object : SimpleTransitionListener() {
                 override fun onTransitionEnd(transition: Transition) {
                     settleOtherElements()
+                    transition.removeListener(this)
                 }
             })
         sharedElementEnterTransition = transition
@@ -60,12 +62,16 @@ class DetailsFragment : Fragment() {
     }
 
     private fun settleOtherElements() {
-        binding.statusToggle.apply {
-            visibility = View.VISIBLE
-            startAnimation(
-                AnimationUtils.loadAnimation(context, R.anim.settle_in)
-                    .also { it.duration = DURATION_SETTLE_IN })
-        }
+        settleInView(binding.statusToggle)
+        settleInView(binding.descriptionLabel)
+        binding.descriptionLabel.text = args.todoItem.description// "I just made an app about anime-manga track down. It is kinda my first real app. I would love to hear your feedback." // args.todoItem.description
+    }
+
+    private fun settleInView(v: View) {
+        v.visibility = View.VISIBLE
+        v.startAnimation(
+            AnimationUtils.loadAnimation(context, R.anim.settle_in)
+                .also { it.duration = DURATION_SETTLE_IN })
     }
 
     override fun onCreateView(
@@ -74,7 +80,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTodoDetailsBinding.inflate(layoutInflater, container, false)
-        binding.descriptionLabel.transitionName = args.todoItem.titleTransitionName()
+        binding.titleLabel.transitionName = args.todoItem.titleTransitionName()
         return binding.root
     }
 
@@ -85,11 +91,11 @@ class DetailsFragment : Fragment() {
         view.doOnPreDraw { startPostponedEnterTransition() }
 
         val todoItem = args.todoItem
-        binding.descriptionLabel.text = todoItem.description
+        binding.titleLabel.text = todoItem.title
 
         with(binding) {
 
-            descriptionLabel.text = todoItem.description
+            titleLabel.text = todoItem.title
 
             statusToggle.check(
                 if (todoItem.completed)

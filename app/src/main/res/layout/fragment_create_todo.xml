@@ -13,10 +13,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/descriptionEntry"
+            android:id="@+id/titleEntry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/description" />
+            android:hint="@string/title" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -31,10 +31,10 @@
 
     <com.ex2.navcomponent.ui.widgets.TodoCircleView
         android:id="@+id/colorIcon"
-        android:visibility="gone"
         android:layout_width="@dimen/todo_icon_small_size"
         android:layout_height="@dimen/todo_icon_small_size"
         android:layout_marginRight="@dimen/margin_normal"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/saveCta"
         app:layout_constraintRight_toLeftOf="@id/saveCta"
         app:layout_constraintTop_toTopOf="@id/saveCta" />

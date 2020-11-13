@@ -27,35 +27,35 @@ object ToDoRepository {
     val list = mutableListOf(
         Todo(
             id = counter++,
-            description = "Do nothing",
+            title = "Do nothing",
             updated = randomTime(),
             completed = true
         ),
 
         Todo(
             id = counter++,
-            description = "Create sample project",
+            title = "Create sample project",
             updated = randomTime(),
             colorCode = COLORS[2]
         ),
 
         Todo(
             id = counter++,
-            description = "Add dependencies",
+            title = "Add dependencies",
             updated = randomTime(),
             colorCode = COLORS[4]
         ),
 
         Todo(
             id = counter++,
-            description = "Create fragments",
+            title = "Create fragments",
             updated = randomTime(),
             colorCode = COLORS[6]
         ),
 
         Todo(
             id = counter++,
-            description = "Create nav graph",
+            title = "Create nav graph",
             updated = randomTime(),
             colorCode = COLORS[0]
         )
@@ -67,13 +67,14 @@ object ToDoRepository {
         return cal.timeInMillis
     }
 
-    fun addToDo(todo: String, color: Int = COLORS[0]): Todo {
+    fun addToDo(todo: String, description: String = "", color: Int = COLORS[0]): Todo {
         val todo = Todo(
             id = counter++,
             updated = System.currentTimeMillis(),
             completed = false,
-            description = todo,
-            colorCode = color
+            title = todo,
+            colorCode = color,
+            description = description
         )
         list.add(0, todo)
         return todo

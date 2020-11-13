@@ -46,8 +46,7 @@ class ColorPickerFragment : Fragment() {
     }
 
     private fun quickSave() {
-        val description = args.description
-        val todo = ToDoRepository.addToDo(description, colorAdapter.selectedColor)
+        val todo = ToDoRepository.addToDo(args.title, args.description, colorAdapter.selectedColor)
         findNavController().popBackStack(R.id.todoListFragment, false)
     }
 

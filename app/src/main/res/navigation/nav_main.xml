@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.ex2.navcomponent.ui.DetailsFragment"
+        android:name="com.ex2.navcomponent.ui.details.DetailsFragment"
         android:label="Details"
         tools:layout="@layout/fragment_todo_details">
 

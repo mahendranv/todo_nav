@@ -60,7 +60,7 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
         init {
             itemView.setOnClickListener {
                 todo?.let {
-                    itemClickListener?.invoke(it, binding.descriptionLabel)
+                    itemClickListener?.invoke(it, binding.titleLabel)
                 }
             }
 
@@ -75,12 +75,12 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
             this.todo = todo
 
             if (todo.completed) {
-                binding.descriptionLabel.markDone()
+                binding.titleLabel.markDone()
             } else {
-                binding.descriptionLabel.markNotDone()
+                binding.titleLabel.markNotDone()
             }
-            binding.descriptionLabel.text = todo.description
-            binding.descriptionLabel.transitionName = todo.titleTransitionName()
+            binding.titleLabel.text = todo.title
+            binding.titleLabel.transitionName = todo.titleTransitionName()
             binding.todoIcon.apply {
                 isSelected = todo.completed
                 fillColor = todo.colorCode

@@ -22,7 +22,7 @@ class TodoListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentToDoListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

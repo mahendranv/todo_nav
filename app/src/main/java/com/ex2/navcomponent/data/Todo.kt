@@ -8,12 +8,14 @@ data class Todo(
 
     val id: Int,
 
-    val description: String,
+    val title: String,
 
     val updated: Long,
 
     val completed: Boolean = false,
 
-    val colorCode: Int = 0xff415dba.toInt()
+    val colorCode: Int = 0xff415dba.toInt(),
 
-) : Parcelable
+    val description: String = ""
+
+    ) : Parcelable

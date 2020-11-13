@@ -10,9 +10,26 @@
         android:name="com.ex2.navcomponent.ui.create.CreateTodoFragment"
         android:label="Create Todo"
         tools:layout="@layout/fragment_create_todo">
+
         <action
-            android:id="@+id/action_createTodoFragment_to_colorPickerFragment"
+            android:id="@+id/action_createTodoFragment_to_createDescriptionFragment"
+            app:destination="@id/createDescriptionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createDescriptionFragment"
+        android:name="com.ex2.navcomponent.ui.create.DescriptionFragment"
+        android:label="Description"
+        tools:layout="@layout/fragment_create_description">
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_createDescriptionFragment_to_colorPickerFragment"
             app:destination="@id/colorPickerFragment" />
+
     </fragment>
 
     <fragment
@@ -22,9 +39,14 @@
         tools:layout="@layout/fragment_color_picker">
 
         <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
             android:name="description"
             app:argType="string"
             app:nullable="false" />
-        
+
     </fragment>
 </navigation>

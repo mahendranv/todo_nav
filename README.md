@@ -19,7 +19,7 @@ That's it. Rest is purely about exploring the nav-component.
 - [ ] Sending data back to the caller fragment
 - [ ] Backstack handling
 - [ ] What is equivalent to Activity's `noHistory`?
-- [ ] Toolbar & menu update
+- [x] Toolbar & menu update
 
 Navigation views
 - [x] Title & menu items
