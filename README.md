@@ -16,8 +16,8 @@ That's it. Rest is purely about exploring the nav-component.
 ## TODO
 - [x] Simple navigation between fragment
 - [x] Safe args
-- [ ] Sending data back to the caller fragment
-- [ ] Backstack handling
+- [x] Sending data back to the caller fragment
+- [x] Backstack handling
 - [ ] What is equivalent to Activity's `noHistory`?
 - [x] Toolbar & menu update
 
@@ -124,3 +124,47 @@ Here's the result
 
 Whole shared element transition implementation is here with this commit.
 https://github.com/mahendranv/todo_nav/commit/d6181cf116feabe29acb7438e15751e6b540191a
+
+## Sending result back to caller fragment
+
+It is a common usecase where we invoke a screen to do some operation and give result back to the caller. Added a color picker to emulate the same here.
+
+<img src="https://github.com/mahendranv/todo_nav/blob/main/art/demo_4.gif" width="350">
+
+This is possible by posting the result to caller fragment's `savedStateHandle`. Under the hood, this `savedStateHandle` is a map of String and Object.
+
+Correct..! We no longer have to deal with Parcelable or Serializable to communicate. Let's jump in.
+
+
+1. Created extension function to Fragment to post and retrieve result from savedStateHandle.
+
+```kotlin
+fun <T> Fragment.setNavResult(key: String, result: T) {
+    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
+}
+
+fun <T> Fragment.getNavResult(key: String): T? {
+    return findNavController().currentBackStackEntry?.savedStateHandle?.get<T>(key)
+}
+```
+
+2. In description (caller) fragment, read the result using `getNavResult` function in `onViewCreated` and updated the state
+```kotlin
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        ...
+        val pickedColor =
+            getNavResult<Int>(ColorPickerFragment.PICKED_COLOR) ?: ToDoRepository.COLORS[0]
+        binding.colorCta.apply {
+            fillColor = pickedColor
+        }
+        ...
+```
+
+3. In picker fragment posted the result with key value using `setNavResult`
+```kotlin
+        binding.saveCta.setOnClickListener {
+            setNavResult(PICKED_COLOR, colorAdapter.selectedColor)
+            findNavController().popBackStack()
+        }
+```
