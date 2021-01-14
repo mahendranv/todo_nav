@@ -36,17 +36,6 @@
         android:id="@+id/colorPickerFragment"
         android:name="com.ex2.navcomponent.ui.create.ColorPickerFragment"
         android:label="Pick Color"
-        tools:layout="@layout/fragment_color_picker">
+        tools:layout="@layout/fragment_color_picker" />
 
-        <argument
-            android:name="title"
-            app:argType="string"
-            app:nullable="false" />
-
-        <argument
-            android:name="description"
-            app:argType="string"
-            app:nullable="false" />
-
-    </fragment>
 </navigation>

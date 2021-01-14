@@ -1,22 +1,22 @@
 package com.ex2.navcomponent.ui.create
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ex2.navcomponent.R
-import com.ex2.navcomponent.data.ToDoRepository
 import com.ex2.navcomponent.databinding.FragmentColorPickerBinding
+import com.ex2.navcomponent.setNavResult
 
 class ColorPickerFragment : Fragment() {
 
     private lateinit var binding: FragmentColorPickerBinding
 
     private val colorAdapter = ColorPickerAdapter()
-
-    private val args by navArgs<ColorPickerFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,18 +41,9 @@ class ColorPickerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.saveCta.setOnClickListener {
-            quickSave()
+            setNavResult(PICKED_COLOR, colorAdapter.selectedColor)
+            findNavController().popBackStack()
         }
-    }
-
-    private fun quickSave() {
-        val todo = ToDoRepository.addToDo(args.title, args.description, colorAdapter.selectedColor)
-        findNavController().popBackStack(R.id.todoListFragment, false)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu_color_picker, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -61,5 +52,11 @@ class ColorPickerFragment : Fragment() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    companion object {
+
+        const val PICKED_COLOR = "picked_color"
     }
 }

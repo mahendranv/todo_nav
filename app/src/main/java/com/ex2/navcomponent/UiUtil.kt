@@ -7,6 +7,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.core.view.children
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.ex2.navcomponent.data.Todo
 import com.google.android.material.textfield.TextInputLayout
 
@@ -41,4 +43,12 @@ fun TextView.showKeyboard() {
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0);
+}
+
+fun <T> Fragment.setNavResult(key: String, result: T) {
+    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
+}
+
+fun <T> Fragment.getNavResult(key: String): T? {
+    return findNavController().currentBackStackEntry?.savedStateHandle?.get<T>(key)
 }

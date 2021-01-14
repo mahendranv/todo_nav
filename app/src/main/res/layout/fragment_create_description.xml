@@ -28,12 +28,33 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_3x"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color" />
+
+        <com.ex2.navcomponent.ui.widgets.TodoCircleView
+            android:id="@+id/colorCta"
+            android:layout_width="@dimen/todo_icon_small_size"
+            android:layout_height="@dimen/todo_icon_small_size"
+            android:layout_marginLeft="@dimen/margin_normal" />
+
+    </LinearLayout>
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/nextCta"
+        android:id="@+id/save_cta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="@dimen/margin_normal"
-        android:text="@string/next" />
+        android:text="@string/save" />
 
 </LinearLayout>
